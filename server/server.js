@@ -11,6 +11,16 @@ const request = require('request');
 const path = require('path');
 
 const app = express();
+let server = null;
+
+const https = require("https");
+const fs = require('fs');
+server = https.createServer({
+    key: fs.readFileSync('/usr/home/gc/certs/garantias.key'),
+    cert: fs.readFileSync('/usr/home/gc/certs/garantias.pem')
+}, app);
+
+
 
 
 //const publicPath = path.resolve(__dirname, '../public');
@@ -61,7 +71,7 @@ app.get('/spotify/:client_id/:client_secret', (req, resp) => {
 });
 
 
-app.listen(port, (err) => {
+server.listen(port, (err) => {
 
     if (err) throw new Error(err);
 
