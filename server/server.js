@@ -24,6 +24,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.get('/', (req, res)=> res.send("working"));
 
 app.get('/spotify/:client_id/:client_secret', (req, resp) => {
 
